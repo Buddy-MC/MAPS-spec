@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "id": "create",
+  "name": "Create",
+  "version": "6.0.10+mc1.21.1",
+  "authors": ["Simibubi and contributors"],
+  "license": "MIT",
+  "environment": "both",
+  "minecraft": "1.21.1",
+  "loaders": ["neoforge"],
+  "requires": [],
+  "optional": ["jei"],
+  "summary": "Kinetic power, processing machines, contraptions and trains.",
+  "description": "A large tech mod about rotational power, mechanical processing, moving contraptions and rail logistics.",
+  "agent": {
+    "one_liner": "Build kinetic power networks and processing lines, then let them run.",
+    "domains": ["kinetics", "processing", "logistics", "trains", "building"],
+    "entrypoints": [
+      "buddy.api:create",
+      "buddy.details:create",
+      "knowledge:recipes",
+      "knowledge:machine_map",
+      "knowledge:tutorial",
+      "doc:docs/machine-map.md"
+    ],
+    "verbs": [
+      "create.kinetics.status",
+      "create.kinetics.connect",
+      "create.machine.status",
+      "create.machine.start",
+      "create.machine.stop",
+      "create.contraption.assemble",
+      "create.contraption.disassemble",
+      "create.train.status"
+    ],
+    "state": [
+      "scan.block.details.create.kinetics",
+      "scan.block.details.create.machine",
+      "scan.block.details.create.contraption",
+      "scan.block.details.create.train",
+      "scan.block.details.create.logistics"
+    ],
+    "knowledge": ["recipes", "uses", "info", "machine_map", "tutorial"],
+    "good_at": [
+      "turning SU/RPM into machine chains",
+      "moving structures with contraptions",
+      "rail logistics and schedules"
+    ],
+    "not_good_at": [
+      "planning a whole line without SU/space checks",
+      "reading a network from block state alone",
+      "recipes that need a specific machine layout without the machine map"
+    ],
+    "requires_client": false,
+    "permissions": ["claims", "contraption_owner", "train_owner", "destructive"],
+    "docs": ["docs/machine-map.md", "docs/ore-line.md"],
+    "examples": [
+      "create a 64 RPM mixer line from a water wheel",
+      "assemble a moving drill contraption and bring the ore back"
+    ],
+    "limitations": [
+      "no built-in dry-run planner",
+      "trains need loaded chunks around the route",
+      "some Ponder tutorials are client-only"
+    ]
+  },
+  "content": {
+    "blocks": 200,
+    "items": 150,
+    "machines": [
+      "mechanical_press",
+      "mechanical_mixer",
+      "encased_fan",
+      "mechanical_saw",
+      "deployer"
+    ],
+    "entities": ["contraption", "train"],
+    "tutorials": ["ponder:create/mechanical_press"]
+  },
+  "links": {
+    "modrinth": "https://modrinth.com/mod/create",
+    "source": "https://github.com/Creators-of-Create/Create"
+  },
+  "maps": {
+    "level": 2,
+    "spec": "0.1"
+  }
+}

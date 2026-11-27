@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "farmersdelight",
+  "name": "Farmer's Delight",
+  "version": "1.21.1-1.3.4",
+  "authors": ["vectorwing"],
+  "license": "MIT",
+  "environment": "both",
+  "minecraft": "1.21.1",
+  "loaders": ["neoforge"],
+  "requires": [],
+  "optional": ["jei"],
+  "summary": "Farming, cooking and food: crops, cutting board, cooking pot, skillet, stove and feasts.",
+  "description": "A cozy farming and cooking mod built around a short farm-to-table loop and a few small stations.",
+  "agent": {
+    "one_liner": "Grow, cut and cook food through a small set of stations with hidden heat, progress and slot roles.",
+    "domains": ["farming", "food", "cooking"],
+    "entrypoints": [
+      "buddy.api:farmersdelight",
+      "buddy.details:farmersdelight",
+      "knowledge:recipes",
+      "knowledge:uses",
+      "doc:docs/cooking.md"
+    ],
+    "verbs": [
+      "farmersdelight.pot.status",
+      "farmersdelight.pot.put",
+      "farmersdelight.pot.take",
+      "farmersdelight.board.cut",
+      "farmersdelight.board.take",
+      "farmersdelight.skillet.put",
+      "farmersdelight.skillet.take"
+    ],
+    "state": [
+      "scan.block.details.farmersdelight.cooking_pot",
+      "scan.block.details.farmersdelight.cutting_board",
+      "scan.block.details.farmersdelight.skillet",
+      "scan.block.details.farmersdelight.stove"
+    ],
+    "knowledge": ["recipes", "uses", "info"],
+    "good_at": [
+      "short farm-to-table loops",
+      "tool-gated cutting",
+      "meals and feasts with clear inputs"
+    ],
+    "not_good_at": [
+      "operating the pot through generic container slots",
+      "seeing heat, progress or slot roles without an integration",
+      "planning a multi-dish menu without a recipe graph"
+    ],
+    "requires_client": false,
+    "permissions": ["claims", "owner"],
+    "docs": ["docs/cooking.md"],
+    "examples": [
+      "cut a log into a stripped log and bark, then cook a stew",
+      "plant rice, harvest it, and serve a meal"
+    ],
+    "limitations": [
+      "no public machine API",
+      "progress and heat live in block entities",
+      "recipe types are not in the vanilla recipe list"
+    ]
+  },
+  "content": {
+    "blocks": 100,
+    "items": 200,
+    "machines": ["cooking_pot", "cutting_board", "skillet", "stove"],
+    "tutorials": []
+  },
+  "links": {
+    "modrinth": "https://modrinth.com/mod/farmers-delight"
+  },
+  "maps": {
+    "level": 2,
+    "spec": "0.1"
+  }
+}

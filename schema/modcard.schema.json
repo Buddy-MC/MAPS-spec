@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:maps:spec:modcard:1",
+  "title": "MAPS Mod Card",
+  "description": "MAPS-0: the static, machine-readable card a mod ships in its jar so agents can discover what it is, what it offers, and where its boundaries are.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "version",
+    "environment",
+    "minecraft",
+    "loaders",
+    "summary",
+    "agent"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1,
+      "description": "Mod Card schema version. Incompatible changes increment this."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Mod id; must match the loader metadata."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Mod version; must match the loader metadata."
+    },
+    "authors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "license": {
+      "type": "string"
+    },
+    "environment": {
+      "enum": ["client", "server", "both"]
+    },
+    "minecraft": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Supported Minecraft version or range, e.g. 1.21.1 or [1.21,1.22)."
+    },
+    "loaders": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "requires": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "optional": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "One sentence for humans."
+    },
+    "description": {
+      "type": "string"
+    },
+    "agent": {
+      "$ref": "#/$defs/agent"
+    },
+    "content": {
+      "type": "object",
+      "description": "Optional content index: blocks, items, machines, entities, dimensions, tutorials.",
+      "additionalProperties": true
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "format": "uri" }
+    },
+    "maps": {
+      "$ref": "#/$defs/maps"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "agent": {
+      "type": "object",
+      "required": ["one_liner", "entrypoints"],
+      "properties": {
+        "one_liner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "One sentence for agents; may differ from the human summary."
+        },
+        "entrypoints": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true,
+          "description": "Opaque entrypoint strings. Recommended form: <host>.<kind>:<name>. Empty array when the mod has no code-level integration."
+        },
+        "domains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "verbs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "state": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "knowledge": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "good_at": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "not_good_at": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "requires_client": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when the entrypoints only work while the owner's client is present (e.g. JEI, Ponder)."
+        },
+        "permissions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "docs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "maps": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "spec": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
